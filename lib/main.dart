@@ -1,107 +1,36 @@
 import 'package:flutter/material.dart';
 
 void main() {
-  runApp(const MaterialApp(home: NinjaCard()));
+  runApp(MaterialApp(
+    home: QuoteList(),
+  ));
 }
 
-class NinjaCard extends StatefulWidget {
-  const NinjaCard({Key? key}) : super(key: key);
+class QuoteList extends StatefulWidget {
+  const QuoteList({Key? key}) : super(key: key);
 
   @override
-  State<NinjaCard> createState() => _NinjaCardState();
+  _QuoteListState createState() => _QuoteListState();
 }
 
-class _NinjaCardState extends State<NinjaCard> {
-  int ninjaLevel = 0;
+class _QuoteListState extends State<QuoteList> {
+  List<String> quotes = [
+    'Be yourself; everyone else is already taken',
+    'I have nothing to declare except my genius',
+    'The truth is rarely pure and never simple'
+  ];
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.grey[900],
+      backgroundColor: Colors.grey[200],
       appBar: AppBar(
-        title: const Text('Ninja ID Card'),
-        backgroundColor: Colors.grey[850],
+        title: const Text("Quotes"),
         centerTitle: true,
-        elevation: 0,
+        backgroundColor: Colors.redAccent,
       ),
-      body: Padding(
-        padding: const EdgeInsets.fromLTRB(30, 40, 30, 0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            const Center(
-              child: CircleAvatar(
-                backgroundImage: AssetImage('assets/ninja.png'),
-                radius: 40,
-              ),
-            ),
-            Divider(
-              height: 60,
-              color: Colors.grey[800],
-            ),
-            const Text(
-              "NAME",
-              style: TextStyle(color: Colors.grey, letterSpacing: 2.0),
-            ),
-            const SizedBox(
-              height: 10,
-            ),
-            Text(
-              "Chun-Li",
-              style: TextStyle(
-                  color: Colors.amberAccent[200],
-                  letterSpacing: 2.0,
-                  fontSize: 28,
-                  fontWeight: FontWeight.bold),
-            ),
-            const SizedBox(
-              height: 30,
-            ),
-            const Text(
-              "CURRENT NINJA LEVEL",
-              style: TextStyle(color: Colors.grey, letterSpacing: 2.0),
-            ),
-            const SizedBox(
-              height: 10,
-            ),
-            Text(
-              "$ninjaLevel",
-              style: TextStyle(
-                  color: Colors.amberAccent[200],
-                  letterSpacing: 2.0,
-                  fontSize: 28,
-                  fontWeight: FontWeight.bold),
-            ),
-            const SizedBox(
-              height: 30,
-            ),
-            Row(
-              children: [
-                Icon(
-                  Icons.email,
-                  color: Colors.grey[400],
-                ),
-                const SizedBox(width: 10),
-                Text(
-                  "chun.li@ninja.net",
-                  style: TextStyle(
-                      color: Colors.grey[400],
-                      fontSize: 18,
-                      letterSpacing: 1.0),
-                )
-              ],
-            )
-          ],
-        ),
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          setState(() {
-            ninjaLevel += 1;
-          });
-        },
-        child: const Icon(Icons.add),
-        backgroundColor: Colors.grey[800],
+      body: Column(
+        children: quotes.map((quote) => Text(quote)).toList(),
       ),
     );
   }
