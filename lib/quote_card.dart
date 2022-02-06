@@ -3,8 +3,10 @@ import 'package:ninja_tuto/qoute.dart';
 
 class QuoteCard extends StatelessWidget {
   final Quote quote;
+  final Function delete;
 
-  const QuoteCard({required this.quote, Key? key}) : super(key: key);
+  const QuoteCard({required this.quote, required this.delete, Key? key})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -23,6 +25,27 @@ class QuoteCard extends StatelessWidget {
             Text(
               quote.author,
               style: TextStyle(fontSize: 14, color: Colors.grey[800]),
+            ),
+            const SizedBox(
+              height: 8,
+            ),
+            TextButton(
+              onPressed: () {
+                delete();
+              },
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: const [
+                  Icon(Icons.delete, color: Colors.grey),
+                  SizedBox(
+                    width: 8,
+                  ),
+                  Text(
+                    "Delete",
+                    style: TextStyle(color: Colors.grey),
+                  )
+                ],
+              ),
             )
           ],
         ),
